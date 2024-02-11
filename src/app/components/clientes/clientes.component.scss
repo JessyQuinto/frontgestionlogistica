@@ -1,36 +1,115 @@
 .container {
-    margin: 20px;
+    margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        thead {
-            tr {
-                background-color: #f7f7f7;
-            }
-        }
-        th, td {
-            text-align: left;
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Centra y limita el ancho del contenedor */
+    background-color: #fff;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    tr {
+        background-color: #007BFF; /* Un azul primario para el encabezado */
+        color: #ffffff;
     }
-    .edit-btn, .delete-btn {
-        padding: 5px 10px;
-        margin-right: 5px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .edit-btn {
-        background-color: #ffc107;
-        color: #fff;
-    }
-    .delete-btn {
-        background-color: #dc3545;
-        color: #fff;
-    }
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    text-transform: uppercase; /* Hace que el texto del encabezado sea mayúsculas */
+}
+
+.edit-btn, .delete-btn, .add-btn {
+    padding: 8px 15px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para los botones */
+    color: #fff;
+}
+
+.edit-btn {
+    background-color: #17A2B8; /* Un azul para editar, más suave */
+}
+
+.edit-btn:hover {
+    background-color: #138496; /* Un tono más oscuro al pasar el mouse */
+}
+
+.delete-btn {
+    background-color: #DC3545; /* Se mantiene rojo para eliminar, por convención */
+}
+
+.delete-btn:hover {
+    background-color: #C82333; /* Un tono más oscuro al pasar el mouse */
+}
+
+.add-btn {
+    background-color: #007BFF; /* Azul primario para agregar */
+}
+
+.add-btn:hover {
+    background-color: #0069D9; /* Un tono más oscuro al pasar el mouse */
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegura que el padding no aumente el ancho */
+}
+
+button[type="submit"],
+button[type="button"] {
+    background-color: #007BFF; /* Azul primario para acciones principales */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #0069D9; /* Un tono más oscuro al pasar el mouse */
+}
+
+button[type="button"] {
+    background-color: #6C757D; /* Gris para cancelar, neutral */
+}
+
+button[type="button"]:hover {
+    background-color: #5A6268; /* Un tono más oscuro al pasar el mouse */
 }

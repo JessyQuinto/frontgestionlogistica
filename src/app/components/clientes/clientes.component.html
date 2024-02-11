@@ -1,26 +1,59 @@
 <div class="container">
-  <h2>Lista de Clientes</h2>
-  <table>
+    <h2>Lista de Clientes</h2>
+    <!-- Botón para agregar un nuevo cliente -->
+    <button *ngIf="!modoEdicion" (click)="iniciarCreacion()" class="add-btn">Agregar Cliente</button>
+  
+    <!-- Formulario para Crear/Editar Cliente -->
+    <div *ngIf="modoEdicion">
+      <h3>{{ clienteActual.clienteID ? 'Editar Cliente' : 'Agregar Cliente' }}</h3>
+      <form (ngSubmit)="guardarCliente()">
+        <div>
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" [(ngModel)]="clienteActual.nombre" name="nombre" placeholder="Nombre" required>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="clienteActual.email" name="email" placeholder="Email" required>
+        </div>
+        <div>
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" [(ngModel)]="clienteActual.direccion" name="direccion" placeholder="Dirección" required>
+        </div>
+        <div>
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" [(ngModel)]="clienteActual.telefono" name="telefono" placeholder="Teléfono" required>
+        </div>
+        <button type="submit">Guardar</button>
+        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+      </form>
+    </div>
+  
+    <!-- Tabla de Clientes -->
+    <table *ngIf="clientes.length > 0">
       <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>Email</th>
-              <th>Dirección</th>
-              <th>Teléfono</th>
-              <th>Acciones</th>
-          </tr>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th>Acciones</th>
+        </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let cliente of clientes">
-              <td>{{ cliente.nombre }}</td>
-              <td>{{ cliente.email }}</td>
-              <td>{{ cliente.direccion }}</td>
-              <td>{{ cliente.telefono }}</td>
-              <td>
-                  <button class="edit-btn">Editar</button>
-                  <button class="delete-btn">Eliminar</button>
-              </td>
-          </tr>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.nombre }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.direccion }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>
+            <button class="edit-btn" (click)="iniciarEdicion(cliente)">Editar</button>
+            <button class="delete-btn" (click)="eliminarCliente(cliente.clienteID)">Eliminar</button>
+          </td>
+        </tr>
       </tbody>
-  </table>
-</div>
+    </table>
+    <div *ngIf="clientes.length === 0">
+      No hay clientes para mostrar.
+    </div>
+  </div>
+  
