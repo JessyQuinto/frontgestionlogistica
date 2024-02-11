@@ -3,8 +3,8 @@
     padding: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Centra y limita el ancho del contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
     background-color: #fff;
 }
 
@@ -20,21 +20,19 @@ table {
     margin-top: 20px;
 }
 
-thead {
-    tr {
-        background-color: #007BFF; /* Un azul primario para el encabezado */
-        color: #ffffff;
-    }
+thead tr {
+    background-color: #007BFF;
+    color: #ffffff;
 }
 
 th, td {
     text-align: left;
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #f0f0f0;
 }
 
 th {
-    text-transform: uppercase; /* Hace que el texto del encabezado sea mayúsculas */
+    text-transform: uppercase;
 }
 
 .edit-btn, .delete-btn, .add-btn {
@@ -43,32 +41,26 @@ th {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave para los botones */
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
     color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .edit-btn {
-    background-color: #17A2B8; /* Un azul para editar, más suave */
+    background-color: #17A2B8;
 }
 
-.edit-btn:hover {
-    background-color: #138496; /* Un tono más oscuro al pasar el mouse */
+.edit-btn:hover, .add-btn:hover, .delete-btn:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .delete-btn {
-    background-color: #DC3545; /* Se mantiene rojo para eliminar, por convención */
-}
-
-.delete-btn:hover {
-    background-color: #C82333; /* Un tono más oscuro al pasar el mouse */
+    background-color: #DC3545;
 }
 
 .add-btn {
-    background-color: #007BFF; /* Azul primario para agregar */
-}
-
-.add-btn:hover {
-    background-color: #0069D9; /* Un tono más oscuro al pasar el mouse */
+    background-color: #007BFF;
+    margin-bottom: 20px;
 }
 
 form div {
@@ -81,35 +73,29 @@ label {
     color: #333;
 }
 
-input[type="text"],
-input[type="email"] {
-    width: calc(100% - 22px);
+input[type="text"], input[type="email"] {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Asegura que el padding no aumente el ancho */
+    box-sizing: border-box;
 }
 
-button[type="submit"],
-button[type="button"] {
-    background-color: #007BFF; /* Azul primario para acciones principales */
+button[type="submit"], button[type="button"] {
+    background-color: #007BFF;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover,
-button[type="button"]:hover {
-    background-color: #0069D9; /* Un tono más oscuro al pasar el mouse */
+    transition: background-color 0.3s, box-shadow 0.2s;
 }
 
 button[type="button"] {
-    background-color: #6C757D; /* Gris para cancelar, neutral */
+    background-color: #6C757D;
 }
 
-button[type="button"]:hover {
-    background-color: #5A6268; /* Un tono más oscuro al pasar el mouse */
+button[type="submit"]:hover, button[type="button"]:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
