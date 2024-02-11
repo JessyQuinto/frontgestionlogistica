@@ -6,7 +6,7 @@ import { Bodega } from '../../models/bodega'; // Asegúrate de tener este modelo
 @Component({
   selector: 'app-bodegas',
   templateUrl: './bodegas.component.html',
-  styleUrls: ['./bodegas.component.css']
+
 })
 export class BodegasComponent implements OnInit {
   bodegas: Bodega[] = [];
