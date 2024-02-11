@@ -1,37 +1,43 @@
 <div class="container">
-    <h2>Lista de Bodegas</h2>
-    <div *ngIf="modoEdicion">
-      <h3>{{ bodegaActual.bodegaID ? 'Editar Bodega' : 'Agregar Bodega' }}</h3>
-      <form (ngSubmit)="guardarBodega()">
-        <input type="text" [(ngModel)]="bodegaActual.nombre" name="nombre" placeholder="Nombre" required>
-        <input type="text" [(ngModel)]="bodegaActual.ubicacion" name="ubicacion" placeholder="Ubicación" required>
-        <input type="number" [(ngModel)]="bodegaActual.capacidad" name="capacidad" placeholder="Capacidad" required>
-        <button type="submit">Guardar</button>
-        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
-      </form>
-    </div>
-    <button *ngIf="!modoEdicion" (click)="iniciarEdicion(nuevaBodega())">Agregar Bodega</button>
- 
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Ubicación</th>
-          <th>Capacidad</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bodega of bodegas">
-          <td>{{ bodega.nombre }}</td>
-          <td>{{ bodega.ubicacion }}</td>
-          <td>{{ bodega.capacidad }}</td>
-          <td>
-            <button (click)="iniciarEdicion(bodega)">Editar</button>
-            <button (click)="eliminarBodega(bodega.bodegaID)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>Lista de Bodegas</h2>
+  <div *ngIf="modoEdicion">
+    <h3>{{ bodegaActual.bodegaID ? 'Editar Bodega' : 'Agregar Bodega' }}</h3>
+    <form (ngSubmit)="guardarBodega()">
+      <div>
+        <input type="text" [(ngModel)]="bodegaActual.nombre" name="nombre" placeholder="Nombre" required class="input-field">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="bodegaActual.ubicacion" name="ubicacion" placeholder="Ubicación" required class="input-field">
+      </div>
+      <div>
+        <input type="number" [(ngModel)]="bodegaActual.capacidad" name="capacidad" placeholder="Capacidad" required class="input-field">
+      </div>
+      <button type="submit" class="save-btn">Guardar</button>
+      <button type="button" (click)="cancelarEdicion()" class="cancel-btn">Cancelar</button>
+    </form>
   </div>
-  
+  <button *ngIf="!modoEdicion" (click)="iniciarEdicion(nuevaBodega())" class="add-btn">Agregar Bodega</button>
+
+  <table *ngIf="bodegas.length > 0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+        <th>Capacidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bodega of bodegas">
+        <td>{{ bodega.nombre }}</td>
+        <td>{{ bodega.ubicacion }}</td>
+        <td>{{ bodega.capacidad }}</td>
+        <td>
+          <button class="edit-btn" (click)="iniciarEdicion(bodega)">Editar</button>
+          <button class="delete-btn" (click)="eliminarBodega(bodega.bodegaID)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="bodegas.length === 0">No hay bodegas registradas.</p>
+</div>

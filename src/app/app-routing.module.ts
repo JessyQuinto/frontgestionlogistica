@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'puertos', component: PuertosComponent }, // Ruta para el componente de puertos
   { path: 'productos', component: ProductosComponent }, // Ruta para el componente de productos
   { path: 'envios-maritimos', component: EntregasMaritimasComponent }, // Ruta para el componente de envíos marítimos
-  { path: 'entregas-terrestres', component: EntregasTerrestresComponent }, // Nueva ruta para el componente de entregas terrestres
+  { path: 'envios-terrestres', component: EntregasTerrestresComponent }, // Nueva ruta para el componente de entregas terrestres
   { path: '', redirectTo: '/clientes', pathMatch: 'full' } // Redirección de la ruta base a clientes
 ];
 

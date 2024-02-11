@@ -1,0 +1,88 @@
+// Variables de colores para reutilización
+$color-primary: #007BFF;
+$color-success: #28a745;
+$color-danger: #DC3545;
+$color-info: #17A2B8;
+$color-secondary: #6C757D;
+$color-light: #f0f0f0;
+$color-dark: #333;
+$color-white: #fff;
+$color-shadow: rgba(0, 0, 0, 0.1);
+
+// Mixin para botones
+@mixin button-style($bgColor: $color-primary) {
+  padding: 8px 15px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  color: $color-white;
+  box-shadow: 0 2px 4px $color-shadow;
+  background-color: $bgColor;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+}
+
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid $color-light;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px $color-shadow;
+  max-width: 800px;
+  background-color: $color-white;
+
+  h2 {
+    color: $color-dark;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  button {
+    &.add-btn { @include button-style($color-primary); }
+    &.edit-btn { @include button-style($color-info); }
+    &.delete-btn { @include button-style($color-danger); }
+    &.save-btn { @include button-style($color-success); }
+    &.cancel-btn { @include button-style($color-secondary); }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    thead tr {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 2px solid $color-light;
+    }
+
+    th { text-transform: uppercase; }
+  }
+
+  form {
+    div { margin-bottom: 15px; }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: $color-dark;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  }
+}

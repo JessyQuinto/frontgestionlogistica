@@ -5,6 +5,7 @@ import { Puerto } from '../../models/puerto';
 @Component({
   selector: 'app-puertos',
   templateUrl: './puertos.component.html',
+  styleUrls: ['./puertos.component.scss']
 })
 export class PuertosComponent implements OnInit {
   puertos: Puerto[] = [];

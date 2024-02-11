@@ -1,37 +1,45 @@
 <div class="container">
-    <h2>Lista de Productos</h2>
-    <div *ngIf="modoEdicion">
-      <h3>{{ productoActual.productoID ? 'Editar Producto' : 'Agregar Producto' }}</h3>
-      <form (ngSubmit)="guardarProducto()">
-        <input type="text" [(ngModel)]="productoActual.nombre" name="nombre" placeholder="Nombre" required>
-        <input type="text" [(ngModel)]="productoActual.descripcion" name="descripcion" placeholder="Descripción">
-        <input type="text" [(ngModel)]="productoActual.tipo" name="tipo" placeholder="Tipo">
-        <button type="submit">Guardar</button>
-        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
-      </form>
-    </div>
-    <button *ngIf="!modoEdicion" (click)="iniciarEdicion()">Agregar Producto</button>
-  
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let producto of productos">
-          <td>{{ producto.nombre }}</td>
-          <td>{{ producto.descripcion }}</td>
-          <td>{{ producto.tipo }}</td>
-          <td>
-            <button (click)="iniciarEdicion(producto)">Editar</button>
-            <button (click)="eliminarProducto(producto.productoID)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>Lista de Productos</h2>
+  <!-- Formulario para Crear/Editar Producto -->
+  <div *ngIf="modoEdicion">
+    <h3>{{ productoActual.productoID ? 'Editar Producto' : 'Agregar Producto' }}</h3>
+    <form (ngSubmit)="guardarProducto()">
+      <div>
+        <input type="text" [(ngModel)]="productoActual.nombre" name="nombre" placeholder="Nombre" required class="input-text">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="productoActual.descripcion" name="descripcion" placeholder="Descripción" class="input-text">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="productoActual.tipo" name="tipo" placeholder="Tipo" class="input-text">
+      </div>
+      <button type="submit" class="save-btn">Guardar</button>
+      <button type="button" (click)="cancelarEdicion()" class="cancel-btn">Cancelar</button>
+    </form>
   </div>
-  
+  <!-- Botón para agregar nuevo producto -->
+  <button *ngIf="!modoEdicion" (click)="iniciarEdicion()" class="add-btn">Agregar Producto</button>
+
+  <!-- Tabla de Productos -->
+  <table *ngIf="productos.length > 0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ producto.tipo }}</td>
+        <td>
+          <button class="edit-btn" (click)="iniciarEdicion(producto)">Editar</button>
+          <button class="delete-btn" (click)="eliminarProducto(producto.productoID)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

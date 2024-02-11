@@ -1,0 +1,94 @@
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    background-color: #fff;
+  
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    form {
+      div {
+        margin-bottom: 15px;
+      }
+  
+      input[type="text"], input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 15px; // Ensure inputs have some spacing
+      }
+    }
+  
+    button {
+      padding: 8px 15px;
+      margin-right: 8px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.2s ease;
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+      &.edit-btn {
+        background-color: #17A2B8;
+      }
+  
+      &.delete-btn {
+        background-color: #DC3545;
+      }
+  
+      &.add-btn {
+        background-color: #007BFF;
+        margin-bottom: 20px;
+      }
+  
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      }
+  
+      &.save-btn {
+        background-color: #28a745; // Green for save
+      }
+  
+      &.cancel-btn {
+        background-color: #6C757D; // Grey for cancel
+      }
+    }
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  
+    thead tr {
+      background-color: #007BFF;
+      color: #ffffff;
+    }
+  
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+  
+    th {
+      text-transform: uppercase;
+    }
+  }
+  
+  // Additional styles for hover states
+  button[type="submit"]:hover, button[type="button"]:hover, .save-btn:hover, .cancel-btn:hover {
+    background-color: darken($color: #0056b3, $amount: 10%);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+  

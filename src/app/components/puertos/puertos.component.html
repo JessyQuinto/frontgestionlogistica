@@ -1,39 +1,44 @@
 <div class="container">
-    <h2>Lista de Puertos</h2>
-    <!-- Formulario para Crear/Editar -->
-    <div *ngIf="modoEdicion">
-      <h3>{{ puertoActual.puertoID ? 'Editar Puerto' : 'Agregar Puerto' }}</h3>
-      <form (ngSubmit)="guardarPuerto()">
-        <input type="text" [(ngModel)]="puertoActual.nombre" name="nombre" placeholder="Nombre" required>
-        <input type="text" [(ngModel)]="puertoActual.ubicacion" name="ubicacion" placeholder="Ubicación" required>
-        <input type="number" [(ngModel)]="puertoActual.capacidad" name="capacidad" placeholder="Capacidad" required min="1">
-        <button type="submit">Guardar</button>
-        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
-      </form>
-    </div>
-    <button *ngIf="!modoEdicion" (click)="iniciarEdicion()">Agregar Puerto</button>
-  
-    <!-- Lista de Puertos -->
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Ubicación</th>
-          <th>Capacidad</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let puerto of puertos">
-          <td>{{ puerto.nombre }}</td>
-          <td>{{ puerto.ubicacion }}</td>
-          <td>{{ puerto.capacidad }}</td>
-          <td>
-            <button class="edit-btn" (click)="iniciarEdicion(puerto)">Editar</button>
-            <button class="delete-btn" (click)="eliminarPuerto(puerto.puertoID)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>Lista de Puertos</h2>
+  <!-- Formulario para Crear/Editar -->
+  <div *ngIf="modoEdicion">
+    <h3>{{ puertoActual.puertoID ? 'Editar Puerto' : 'Agregar Puerto' }}</h3>
+    <form (ngSubmit)="guardarPuerto()">
+      <div>
+        <input type="text" [(ngModel)]="puertoActual.nombre" name="nombre" placeholder="Nombre" required class="input-text">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="puertoActual.ubicacion" name="ubicacion" placeholder="Ubicación" required class="input-text">
+      </div>
+      <div>
+        <input type="number" [(ngModel)]="puertoActual.capacidad" name="capacidad" placeholder="Capacidad" required min="1" class="input-text">
+      </div>
+      <button type="submit" class="save-btn">Guardar</button>
+      <button type="button" (click)="cancelarEdicion()" class="cancel-btn">Cancelar</button>
+    </form>
   </div>
-  
+  <button *ngIf="!modoEdicion" (click)="iniciarEdicion()" class="add-btn">Agregar Puerto</button>
+
+  <!-- Lista de Puertos -->
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+        <th>Capacidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let puerto of puertos">
+        <td>{{ puerto.nombre }}</td>
+        <td>{{ puerto.ubicacion }}</td>
+        <td>{{ puerto.capacidad }}</td>
+        <td>
+          <button class="edit-btn" (click)="iniciarEdicion(puerto)">Editar</button>
+          <button class="delete-btn" (click)="eliminarPuerto(puerto.puertoID)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

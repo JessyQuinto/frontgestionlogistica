@@ -1,38 +1,42 @@
 <div class="container">
-    <h2>Envíos Terrestres</h2>
-    <button *ngIf="!modoEdicion" (click)="iniciarCreacion()">Agregar Envío</button>
-  
-    <div *ngIf="modoEdicion">
-      <h3>{{ envioActual.envioTerrestreID ? 'Editar Envío' : 'Agregar Envío' }}</h3>
-      <form (ngSubmit)="guardarEnvio()">
-        <!-- Campos del formulario como clienteID, productoID, etc. -->
+  <h2>Envíos Terrestres</h2>
+  <!-- Botón para agregar nuevo envío -->
+  <button *ngIf="!modoEdicion" (click)="iniciarCreacion()" class="add-btn">Agregar Envío</button>
+
+  <!-- Formulario de Edición/Creación -->
+  <div *ngIf="modoEdicion" class="form">
+    <h3>{{ envioActual.envioTerrestreID ? 'Editar Envío' : 'Agregar Envío' }}</h3>
+    <form (ngSubmit)="guardarEnvio()">
+      <div>
         <input type="number" [(ngModel)]="envioActual.clienteID" name="clienteID" placeholder="Cliente ID" required>
-        <!-- Añade el resto de campos de manera similar -->
-        <button type="submit">Guardar</button>
-        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
-      </form>
-    </div>
-  
-    <table>
-      <thead>
-        <tr>
-          <th>Cliente ID</th>
-          <th>Producto ID</th>
-          <!-- Añade el resto de columnas según tu modelo -->
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let envio of enviosTerrestres">
-          <td>{{ envio.clienteID }}</td>
-          <td>{{ envio.productoID }}</td>
-          <!-- Añade el resto de datos del envío -->
-          <td>
-            <button (click)="iniciarEdicion(envio)">Editar</button>
-            <button (click)="eliminarEnvio(envio.envioTerrestreID)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <!-- Añade el resto de campos de manera similar, asegurándote de seguir el estilo previamente definido -->
+      </div>
+      <button type="submit" class="save-btn">Guardar</button>
+      <button type="button" (click)="cancelarEdicion()" class="cancel-btn">Cancelar</button>
+    </form>
   </div>
-  
+
+  <!-- Tabla de envíos terrestres -->
+  <table *ngIf="enviosTerrestres.length > 0">
+    <thead>
+      <tr>
+        <th>Cliente ID</th>
+        <th>Producto ID</th>
+        <!-- Añade el resto de columnas según tu modelo -->
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let envio of enviosTerrestres">
+        <td>{{ envio.clienteID }}</td>
+        <td>{{ envio.productoID }}</td>
+        <!-- Añade el resto de datos del envío -->
+        <td>
+          <button class="edit-btn" (click)="iniciarEdicion(envio)">Editar</button>
+          <button class="delete-btn" (click)="eliminarEnvio(envio.envioTerrestreID)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="enviosTerrestres.length === 0">No hay envíos terrestres registrados.</p>
+</div>
