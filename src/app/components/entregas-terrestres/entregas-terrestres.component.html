@@ -1,1 +1,38 @@
-<p>entregas-terrestres works!</p>
+<div class="container">
+    <h2>Envíos Terrestres</h2>
+    <button *ngIf="!modoEdicion" (click)="iniciarCreacion()">Agregar Envío</button>
+  
+    <div *ngIf="modoEdicion">
+      <h3>{{ envioActual.envioTerrestreID ? 'Editar Envío' : 'Agregar Envío' }}</h3>
+      <form (ngSubmit)="guardarEnvio()">
+        <!-- Campos del formulario como clienteID, productoID, etc. -->
+        <input type="number" [(ngModel)]="envioActual.clienteID" name="clienteID" placeholder="Cliente ID" required>
+        <!-- Añade el resto de campos de manera similar -->
+        <button type="submit">Guardar</button>
+        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+      </form>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente ID</th>
+          <th>Producto ID</th>
+          <!-- Añade el resto de columnas según tu modelo -->
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let envio of enviosTerrestres">
+          <td>{{ envio.clienteID }}</td>
+          <td>{{ envio.productoID }}</td>
+          <!-- Añade el resto de datos del envío -->
+          <td>
+            <button (click)="iniciarEdicion(envio)">Editar</button>
+            <button (click)="eliminarEnvio(envio.envioTerrestreID)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

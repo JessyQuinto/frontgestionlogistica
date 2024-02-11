@@ -1,1 +1,38 @@
-<p>entregas-maritimas works!</p>
+<div class="container">
+    <h2>Envíos Marítimos</h2>
+  
+    <!-- Botón para agregar nuevo envío (solo visible si no estamos en modo de edición) -->
+    <button *ngIf="!modoEdicion" (click)="seleccionarEnvioMaritimo(resetEnvioMaritimo())">Agregar Nuevo Envío</button>
+  
+    <!-- Formulario de Edición/Creación -->
+    <div *ngIf="modoEdicion" class="form">
+      <h3>{{ envioMaritimoActual.envioMaritimoID ? 'Editar Envío Marítimo' : 'Nuevo Envío Marítimo' }}</h3>
+      <input [(ngModel)]="envioMaritimoActual.numeroGuia" placeholder="Número de Guía" name="numeroGuia">
+      <!-- Añade aquí más campos según sea necesario -->
+      <button (click)="guardarEnvioMaritimo()">Guardar</button>
+      <button (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  
+    <!-- Tabla de envíos marítimos -->
+    <table *ngIf="enviosMaritimos.length > 0">
+      <thead>
+        <tr>
+          <th>Número de Guía</th>
+          <!-- Añade aquí más cabeceras de columna según sea necesario -->
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let envio of enviosMaritimos">
+          <td>{{ envio.numeroGuia }}</td>
+          <!-- Añade aquí más datos de cada envío según sea necesario -->
+          <td>
+            <button (click)="seleccionarEnvioMaritimo(envio)">Editar</button>
+            <button (click)="eliminarEnvioMaritimo(envio.envioMaritimoID)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="enviosMaritimos.length === 0">No hay envíos marítimos registrados.</p>
+  </div>
+  
