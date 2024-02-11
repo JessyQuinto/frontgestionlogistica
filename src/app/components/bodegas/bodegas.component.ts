@@ -1,10 +1,32 @@
-import { Component } from '@angular/core';
+// En src/app/components/bodegas/bodegas.component.ts
+import { Component, OnInit } from '@angular/core';
+import { BodegaService } from 'src/app/services/services/bodega.service';
+import { Bodega } from '../../models/bodega'; // Asegúrate de tener este modelo
 
 @Component({
   selector: 'app-bodegas',
   templateUrl: './bodegas.component.html',
-  styleUrls: ['./bodegas.component.scss']
+  styleUrls: ['./bodegas.component.css']
 })
-export class BodegasComponent {
+export class BodegasComponent implements OnInit {
+  bodegas: Bodega[] = [];
 
+  constructor(private bodegaService: BodegaService) { }
+
+  ngOnInit(): void {
+    this.cargarBodegas();
+  }
+
+  cargarBodegas(): void {
+    this.bodegaService.getBodegas().subscribe(
+      (data: Bodega[]) => {
+        this.bodegas = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  // Implementa métodos adicionales para crear, actualizar y eliminar...
 }
