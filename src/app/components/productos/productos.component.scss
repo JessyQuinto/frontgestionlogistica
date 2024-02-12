@@ -24,7 +24,7 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
-        margin-bottom: 15px; // Ensure inputs have some spacing
+        margin-bottom: 15px; 
       }
     }
   
@@ -56,11 +56,11 @@
       }
   
       &.save-btn {
-        background-color: #28a745; // Green for save
+        background-color: #28a745; 
       }
   
       &.cancel-btn {
-        background-color: #6C757D; // Grey for cancel
+        background-color: #6C757D; 
       }
     }
   }
@@ -86,7 +86,7 @@
     }
   }
   
-  // Additional styles for hover states
+
   button[type="submit"]:hover, button[type="button"]:hover, .save-btn:hover, .cancel-btn:hover {
     background-color: darken($color: #0056b3, $amount: 10%);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);

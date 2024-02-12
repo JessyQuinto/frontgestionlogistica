@@ -7,7 +7,7 @@ import { EnvioTerrestre } from 'src/app/models/envio-terrestre';
   providedIn: 'root'
 })
 export class EntregaTerrestreService {
-  private apiUrl = 'https://localhost:7191/api/EnviosTerrestres'; // URL de tu API
+  private apiUrl = 'https://localhost:7191/api/EnviosTerrestres'; // URL
 
   constructor(private http: HttpClient) { }
 

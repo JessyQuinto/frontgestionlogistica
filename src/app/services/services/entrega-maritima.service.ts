@@ -6,8 +6,8 @@ import { EnvioMaritimo } from 'src/app/models/envio-maritimo';
   providedIn: 'root'
 })
 export class EntregaMaritimaService {
-  private apiUrl = 'https://localhost:7191/api/EnviosMaritimos'; // Ajusta según sea necesario
-
+  private apiUrl = 'https://localhost:7191/api/EnviosMaritimos';
+  
   constructor(private http: HttpClient) { }
 
   getEnviosMaritimos(): Observable<EnvioMaritimo[]> {

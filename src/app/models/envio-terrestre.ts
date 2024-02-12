@@ -9,6 +9,6 @@ export interface EnvioTerrestre {
     precioEnvio: number;
     placaVehiculo: string;
     numeroGuia: string;
-    // Si necesitas las relaciones como objetos, añádelas aquí
+
   }
   

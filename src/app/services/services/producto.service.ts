@@ -1,4 +1,4 @@
-// En src/app/services/producto.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { Producto } from 'src/app/models/producto';
   providedIn: 'root'
 })
 export class ProductoService {
-  private apiUrl = 'https://localhost:7191/api/Productos'; // Ajusta a la URL de tu API
+  private apiUrl = 'https://localhost:7191/api/Productos'; 
 
   constructor(private http: HttpClient) { }
 

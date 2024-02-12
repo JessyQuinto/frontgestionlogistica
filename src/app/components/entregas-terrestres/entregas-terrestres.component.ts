@@ -15,10 +15,12 @@ export class EntregasTerrestresComponent implements OnInit {
   constructor(private entregaTerrestreService: EntregaTerrestreService) { }
 
   ngOnInit(): void {
+    // Carga los envíos terrestres al iniciar
     this.cargarEnviosTerrestres();
   }
 
   cargarEnviosTerrestres(): void {
+    // Obtiene todos los envíos terrestres disponibles
     this.entregaTerrestreService.getAll().subscribe(
       (data: EnvioTerrestre[]) => {
         this.enviosTerrestres = data;
@@ -30,24 +32,29 @@ export class EntregasTerrestresComponent implements OnInit {
   }
 
   iniciarEdicion(envio: EnvioTerrestre): void {
+    // Establece el envío seleccionado para edición
     this.envioActual = { ...envio };
     this.modoEdicion = true;
   }
 
   iniciarCreacion(): void {
+    // Prepara un nuevo envío para su creación
     this.envioActual = this.inicializarEnvio();
     this.modoEdicion = true;
   }
 
   cancelarEdicion(): void {
+    // Cancela la edición o creación de un envío
     this.modoEdicion = false;
     this.envioActual = this.inicializarEnvio();
   }
 
   guardarEnvio(): void {
+    // Guarda los cambios o el nuevo envío
     if (this.envioActual.envioTerrestreID) {
       this.entregaTerrestreService.update(this.envioActual.envioTerrestreID, this.envioActual).subscribe(
         () => {
+          // Envío actualizado correctamente
           this.cargarEnviosTerrestres();
           this.cancelarEdicion();
         },
@@ -58,6 +65,7 @@ export class EntregasTerrestresComponent implements OnInit {
     } else {
       this.entregaTerrestreService.create(this.envioActual).subscribe(
         () => {
+          // Nuevo envío creado correctamente
           this.cargarEnviosTerrestres();
           this.cancelarEdicion();
         },
@@ -69,9 +77,11 @@ export class EntregasTerrestresComponent implements OnInit {
   }
 
   eliminarEnvio(envioTerrestreID: number): void {
+    // Confirma y elimina un envío terrestre
     if (confirm('¿Está seguro de que desea eliminar este envío terrestre?')) {
       this.entregaTerrestreService.delete(envioTerrestreID).subscribe(
         () => {
+          // Envío eliminado correctamente
           this.cargarEnviosTerrestres();
         },
         error => {
@@ -82,6 +92,7 @@ export class EntregasTerrestresComponent implements OnInit {
   }
 
   private inicializarEnvio(): EnvioTerrestre {
+    // Crea una nueva instancia de envío terrestre
     return {
       envioTerrestreID: 0,
       clienteID: 0,

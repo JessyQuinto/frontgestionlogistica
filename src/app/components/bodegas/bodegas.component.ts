@@ -15,10 +15,12 @@ export class BodegasComponent implements OnInit {
   constructor(private bodegaService: BodegaService) { }
 
   ngOnInit(): void {
+    // Carga inicial de bodegas
     this.cargarBodegas();
   }
 
   cargarBodegas(): void {
+    // Solicita la lista de bodegas al servidor
     this.bodegaService.getBodegas().subscribe(
       (data: Bodega[]) => {
         this.bodegas = data;
@@ -30,6 +32,7 @@ export class BodegasComponent implements OnInit {
   }
 
   nuevaBodega(): Bodega {
+    // Crea una nueva instancia de bodega
     return {
       bodegaID: 0,
       nombre: '',
@@ -39,19 +42,23 @@ export class BodegasComponent implements OnInit {
   }
 
   iniciarEdicion(bodega: Bodega): void {
+    // Prepara la edición de una bodega
     this.bodegaActual = { ...bodega };
     this.modoEdicion = true;
   }
 
   cancelarEdicion(): void {
+    // Cancela el modo de edición
     this.modoEdicion = false;
     this.bodegaActual = this.nuevaBodega();
   }
 
   guardarBodega(): void {
+    // Guarda los cambios de la bodega en el servidor
     if (this.bodegaActual.bodegaID) {
       this.bodegaService.updateBodega(this.bodegaActual.bodegaID, this.bodegaActual).subscribe(
         () => {
+          // Bodega actualizada correctamente
           this.cargarBodegas();
           this.cancelarEdicion();
         },
@@ -62,6 +69,7 @@ export class BodegasComponent implements OnInit {
     } else {
       this.bodegaService.createBodega(this.bodegaActual).subscribe(
         (nuevaBodega) => {
+          // Nueva bodega creada correctamente
           this.bodegas.push(nuevaBodega);
           this.cargarBodegas();
           this.cancelarEdicion();
@@ -74,9 +82,11 @@ export class BodegasComponent implements OnInit {
   }
 
   eliminarBodega(bodegaID: number): void {
+    // Confirma y elimina una bodega
     if (confirm('¿Está seguro de que desea eliminar esta bodega?')) {
       this.bodegaService.deleteBodega(bodegaID).subscribe(
         () => {
+          // Bodega eliminada correctamente
           this.cargarBodegas();
         },
         error => {

@@ -15,10 +15,12 @@ export class ProductosComponent implements OnInit {
   constructor(private productoService: ProductoService) { }
 
   ngOnInit(): void {
+    // Carga la lista de productos al iniciar
     this.cargarProductos();
   }
 
   cargarProductos(): void {
+    // Obtiene los productos desde el servidor
     this.productoService.getProductos().subscribe(
       (data: Producto[]) => {
         this.productos = data;
@@ -27,31 +29,33 @@ export class ProductosComponent implements OnInit {
     );
   }
 
-  // Método para iniciar la edición o agregar un nuevo producto
   iniciarEdicion(producto?: Producto): void {
+    // Prepara el objeto productoActual para edición o creación
     if (producto) {
       this.productoActual = { ...producto };
     } else {
-      // Inicializa productoActual con valores predeterminados
       this.productoActual = this.inicializarProducto();
     }
     this.modoEdicion = true;
   }
 
-  // Método para inicializar un objeto Producto con valores predeterminados
   inicializarProducto(): Producto {
+    // Retorna un nuevo producto con valores por defecto
     return { productoID: 0, nombre: '', descripcion: '', tipo: '' };
   }
 
   cancelarEdicion(): void {
+    // Restablece el productoActual y sale del modo de edición
     this.modoEdicion = false;
-    this.productoActual = { productoID: 0, nombre: '', descripcion: '', tipo: '' };
+    this.productoActual = this.inicializarProducto();
   }
 
   guardarProducto(): void {
-    if (this.modoEdicion) {
+    // Guarda cambios del productoActual o crea uno nuevo
+    if (this.productoActual.productoID) {
       this.productoService.updateProducto(this.productoActual.productoID, this.productoActual).subscribe(
         () => {
+          // Producto actualizado correctamente
           this.cargarProductos();
           this.cancelarEdicion();
         },
@@ -60,6 +64,7 @@ export class ProductosComponent implements OnInit {
     } else {
       this.productoService.createProducto(this.productoActual).subscribe(
         () => {
+          // Producto creado correctamente
           this.cargarProductos();
           this.cancelarEdicion();
         },
@@ -69,9 +74,11 @@ export class ProductosComponent implements OnInit {
   }
 
   eliminarProducto(productoID: number): void {
+    // Confirma y elimina un producto
     if (confirm('¿Está seguro de que desea eliminar este producto?')) {
       this.productoService.deleteProducto(productoID).subscribe(
         () => {
+          // Producto eliminado correctamente
           this.cargarProductos();
         },
         error => console.error('Error al eliminar el producto:', error)

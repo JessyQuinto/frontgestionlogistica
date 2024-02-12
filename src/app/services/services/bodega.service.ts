@@ -8,7 +8,7 @@ import { Bodega } from 'src/app/models/bodega';
   providedIn: 'root'
 })
 export class BodegaService {
-  private apiUrl = 'https://localhost:7191/api/Bodegas'; // URL de tu API
+  private apiUrl = 'https://localhost:7191/api/Bodegas'; // back
 
   constructor(private http: HttpClient) { }
 

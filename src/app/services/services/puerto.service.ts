@@ -1,4 +1,4 @@
-// src/app/services/puerto.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Puerto } from 'src/app/models/puerto';
   providedIn: 'root'
 })
 export class PuertoService {
-  private apiUrl = 'https://localhost:7191/api/Puertos'; // Ajusta la URL según sea necesario
+  private apiUrl = 'https://localhost:7191/api/Puertos'; 
 
   constructor(private http: HttpClient) { }
 

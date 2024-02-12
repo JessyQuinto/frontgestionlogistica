@@ -15,10 +15,12 @@ export class EntregasMaritimasComponent implements OnInit {
   constructor(private entregaMaritimaService: EntregaMaritimaService) { }
 
   ngOnInit() {
+    // Inicialización y carga de envíos marítimos
     this.cargarEnviosMaritimos();
   }
 
   cargarEnviosMaritimos(): void {
+    // Obtener lista de envíos marítimos desde el servicio
     this.entregaMaritimaService.getEnviosMaritimos().subscribe(
       (enviosMaritimos) => {
         this.enviosMaritimos = enviosMaritimos;
@@ -30,19 +32,23 @@ export class EntregasMaritimasComponent implements OnInit {
   }
 
   seleccionarEnvioMaritimo(envioMaritimo: EnvioMaritimo): void {
+    // Configura el envío marítimo actual para edición
     this.envioMaritimoActual = { ...envioMaritimo };
     this.modoEdicion = true;
   }
 
   cancelarEdicion(): void {
+    // Cancela la edición y resetea el envío marítimo actual
     this.modoEdicion = false;
     this.envioMaritimoActual = this.resetEnvioMaritimo();
   }
 
   guardarEnvioMaritimo(): void {
+    // Guarda o actualiza el envío marítimo actual
     if (this.envioMaritimoActual.envioMaritimoID) {
       this.entregaMaritimaService.updateEnvioMaritimo(this.envioMaritimoActual.envioMaritimoID, this.envioMaritimoActual).subscribe(
         () => {
+          // Envío marítimo actualizado
           this.cargarEnviosMaritimos();
           this.cancelarEdicion();
         },
@@ -53,6 +59,7 @@ export class EntregasMaritimasComponent implements OnInit {
     } else {
       this.entregaMaritimaService.createEnvioMaritimo(this.envioMaritimoActual).subscribe(
         () => {
+          // Nuevo envío marítimo creado
           this.cargarEnviosMaritimos();
           this.cancelarEdicion();
         },
@@ -64,9 +71,11 @@ export class EntregasMaritimasComponent implements OnInit {
   }
 
   eliminarEnvioMaritimo(id: number): void {
+    // Confirma y elimina un envío marítimo
     if (confirm('¿Estás seguro de que quieres eliminar este envío marítimo?')) {
       this.entregaMaritimaService.deleteEnvioMaritimo(id).subscribe(
         () => {
+          // Envío marítimo eliminado
           this.cargarEnviosMaritimos();
         },
         error => {
@@ -77,6 +86,7 @@ export class EntregasMaritimasComponent implements OnInit {
   }
 
   resetEnvioMaritimo(): EnvioMaritimo {
+    // Reinicia los valores del envío marítimo a valores por defecto
     return {
       envioMaritimoID: 0,
       clienteID: 0,
