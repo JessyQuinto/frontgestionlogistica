@@ -1,42 +1,89 @@
 <div class="container">
   <h2>Envíos Terrestres</h2>
-  <!-- Botón para agregar nuevo envío -->
-  <button *ngIf="!modoEdicion" (click)="iniciarCreacion()" class="add-btn">Agregar Envío</button>
+  <button *ngIf="!modoEdicion" (click)="iniciarCreacion()" class="btn btn-primary mb-3">Agregar Envío</button>
 
-  <!-- Formulario de Edición/Creación -->
-  <div *ngIf="modoEdicion" class="form">
-    <h3>{{ envioActual.envioTerrestreID ? 'Editar Envío' : 'Agregar Envío' }}</h3>
-    <form (ngSubmit)="guardarEnvio()">
-      <div>
-        <input type="number" [(ngModel)]="envioActual.clienteID" name="clienteID" placeholder="Cliente ID" required>
-        <!-- Añade el resto de campos de manera similar, asegurándote de seguir el estilo previamente definido -->
-      </div>
-      <button type="submit" class="save-btn">Guardar</button>
-      <button type="button" (click)="cancelarEdicion()" class="cancel-btn">Cancelar</button>
-    </form>
+  <div *ngIf="modoEdicion" class="card">
+    <div class="card-header">
+      {{ envioActual.envioTerrestreID ? 'Editar Envío' : 'Agregar Envío' }}
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="guardarEnvio()">
+        <div class="mb-3">
+          <label for="clienteID" class="form-label">Cliente ID:</label>
+          <input type="number" [(ngModel)]="envioActual.clienteID" name="clienteID" class="form-control" placeholder="Cliente ID" required>
+        </div>
+        <div class="mb-3">
+          <label for="productoID" class="form-label">Producto ID:</label>
+          <input type="number" [(ngModel)]="envioActual.productoID" name="productoID" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="cantidadProducto" class="form-label">Cantidad del Producto:</label>
+          <input type="number" [(ngModel)]="envioActual.cantidadProducto" name="cantidadProducto" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="fechaRegistro" class="form-label">Fecha de Registro:</label>
+          <input type="date" [(ngModel)]="envioActual.fechaRegistro" name="fechaRegistro" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="fechaEntrega" class="form-label">Fecha de Entrega:</label>
+          <input type="date" [(ngModel)]="envioActual.fechaEntrega" name="fechaEntrega" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="bodegaID" class="form-label">Bodega de Entrega:</label>
+          <input type="number" [(ngModel)]="envioActual.bodegaID" name="bodegaID" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="precioEnvio" class="form-label">Precio de Envío:</label>
+          <input type="number" [(ngModel)]="envioActual.precioEnvio" name="precioEnvio" class="form-control" step="0.01" required>
+        </div>
+        <div class="mb-3">
+          <label for="placaVehiculo" class="form-label">Placa del Vehículo:</label>
+          <input type="text" [(ngModel)]="envioActual.placaVehiculo" name="placaVehiculo" class="form-control" pattern="[A-Z]{3}[0-9]{3}" required>
+        </div>
+        <div class="mb-3">
+          <label for="numeroGuia" class="form-label">Número de Guía:</label>
+          <input type="text" [(ngModel)]="envioActual.numeroGuia" name="numeroGuia" class="form-control" maxlength="10" minlength="10" required>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" (click)="cancelarEdicion()" class="btn btn-secondary">Cancelar</button>
+      </form>
+    </div>
   </div>
 
-  <!-- Tabla de envíos terrestres -->
-  <table *ngIf="enviosTerrestres.length > 0">
-    <thead>
-      <tr>
-        <th>Cliente ID</th>
-        <th>Producto ID</th>
-        <!-- Añade el resto de columnas según tu modelo -->
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let envio of enviosTerrestres">
-        <td>{{ envio.clienteID }}</td>
-        <td>{{ envio.productoID }}</td>
-        <!-- Añade el resto de datos del envío -->
-        <td>
-          <button class="edit-btn" (click)="iniciarEdicion(envio)">Editar</button>
-          <button class="delete-btn" (click)="eliminarEnvio(envio.envioTerrestreID)">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <p *ngIf="enviosTerrestres.length === 0">No hay envíos terrestres registrados.</p>
+  <div *ngIf="enviosTerrestres.length > 0" class="mt-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Cliente ID</th>
+          <th>Producto ID</th>
+          <th>Cantidad Producto</th>
+          <th>Fecha Registro</th>
+          <th>Fecha Entrega</th>
+          <th>Bodega ID</th>
+          <th>Precio Envío</th>
+          <th>Placa Vehículo</th>
+          <th>Número Guía</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let envio of enviosTerrestres">
+          <td>{{ envio.clienteID }}</td>
+          <td>{{ envio.productoID }}</td>
+          <td>{{ envio.cantidadProducto }}</td>
+          <td>{{ envio.fechaRegistro | date:'shortDate' }}</td>
+          <td>{{ envio.fechaEntrega | date:'shortDate' }}</td>
+          <td>{{ envio.bodegaID }}</td>
+          <td>{{ envio.precioEnvio }}</td>
+          <td>{{ envio.placaVehiculo }}</td>
+          <td>{{ envio.numeroGuia }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="iniciarEdicion(envio)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarEnvio(envio.envioTerrestreID)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p *ngIf="enviosTerrestres.length === 0" class="mt-4">No hay envíos terrestres registrados.</p>
 </div>
